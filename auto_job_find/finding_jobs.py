@@ -4,8 +4,8 @@ from selenium import webdriver
 from selenium.common import NoSuchElementException
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.ui import WebDriverWait
 
 # 全局 WebDriver 实例
 driver = None
@@ -46,19 +46,27 @@ def log_in():
     global driver
 
     # 点击按钮
-    login_button = driver.find_element(By.XPATH, "//*[@id='header']/div[1]/div[3]/div/a")
+    login_button = driver.find_element(
+        By.XPATH, "//*[@id='header']/div[1]/div[3]/div/a"
+    )
     login_button.click()
 
     # 等待微信登录按钮出现
-    xpath_locator_wechat_login = "//*[@id='wrap']/div/div[2]/div[2]/div[2]/div[1]/div[4]/a"
+    xpath_locator_wechat_login = (
+        "//*[@id='wrap']/div/div[2]/div[2]/div[2]/div[1]/div[4]/a"
+    )
     WebDriverWait(driver, 10).until(
         EC.presence_of_element_located((By.XPATH, xpath_locator_wechat_login))
     )
 
-    wechat_button = driver.find_element(By.XPATH, "//*[@id='wrap']/div/div[2]/div[2]/div[2]/div[1]/div[4]/a")
+    wechat_button = driver.find_element(
+        By.XPATH, "//*[@id='wrap']/div/div[2]/div[2]/div[2]/div[1]/div[4]/a"
+    )
     wechat_button.click()
 
-    xpath_locator_wechat_logo = "//*[@id='wrap']/div/div[2]/div[2]/div[1]/div[2]/div[1]/img"
+    xpath_locator_wechat_logo = (
+        "//*[@id='wrap']/div/div[2]/div[2]/div[1]/div[2]/div[1]/img"
+    )
     WebDriverWait(driver, 10).until(
         EC.presence_of_element_located((By.XPATH, xpath_locator_wechat_logo))
     )
@@ -73,7 +81,9 @@ def get_job_description():
     global driver
 
     # 使用给定的 XPath 定位职位描述元素
-    xpath_locator_job_description = "//*[@id='wrap']/div[2]/div[2]/div/div/div[2]/div/div[2]/p"
+    xpath_locator_job_description = (
+        "//*[@id='wrap']/div[2]/div[2]/div/div/div[2]/div/div[2]/p"
+    )
 
     # 确保元素已加载并且可以获取文本
     job_description_element = WebDriverWait(driver, 10).until(
@@ -90,7 +100,9 @@ def get_job_description():
 
 def select_dropdown_option(driver, label):
     # 尝试在具有特定类的元素中找到文本
-    trigger_elements = driver.find_elements(By.XPATH, "//*[@class='recommend-job-btn has-tooltip']")
+    trigger_elements = driver.find_elements(
+        By.XPATH, "//*[@class='recommend-job-btn has-tooltip']"
+    )
 
     # 标记是否找到元素
     found = False
@@ -132,7 +144,9 @@ def get_job_description_by_index(index):
         job_element = driver.find_element(By.XPATH, job_selector)
         job_element.click()
 
-        description_selector = "//*[@id='wrap']/div[2]/div[2]/div/div/div[2]/div/div[2]/p"
+        description_selector = (
+            "//*[@id='wrap']/div[2]/div[2]/div/div/div[2]/div/div[2]/p"
+        )
         WebDriverWait(driver, 10).until(
             EC.presence_of_element_located((By.XPATH, description_selector))
         )

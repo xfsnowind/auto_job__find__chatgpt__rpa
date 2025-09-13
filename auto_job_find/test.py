@@ -1,6 +1,7 @@
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 
+
 def open_browser_with_options(url, browser):
     options = Options()
     options.add_experimental_option("detach", True)
@@ -12,6 +13,7 @@ def open_browser_with_options(url, browser):
         raise ValueError("Browser type not supported")
 
     driver.get(url)
+
 
 # Variables
 url = "https://www.zhipin.com/web/geek/job-recommend?ka=header-job-recommend"
